@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-//${query}/hot.json
 const SearchBar = () => {
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState('');
@@ -27,7 +26,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <form onSubmit={() => handleClick()}>
+      <form className="flex justify-center" onSubmit={handleClick}>
         <label htmlFor="search">Search Subreddits</label>
         <input
           value={query}
@@ -35,7 +34,7 @@ const SearchBar = () => {
           type="text"
           className="border-2 border-grey-500"
         />
-        <button type="button">Search</button>
+        <button type="submit">Search</button>
       </form>
     </>
   );

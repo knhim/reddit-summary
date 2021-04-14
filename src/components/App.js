@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
+import IndividualPost from './IndividualPost';
 
 //fetch example (reddit.com/r/manga/hot.json)
 
@@ -19,9 +20,9 @@ const App = () => {
 
   return (
     <>
-      <h1>Home Page</h1>
+      <h1 className="flex justify-center">Home Page</h1>
       <SearchBar />
-      <p>How do I get my request?</p>
+      <IndividualPost />
     </>
   );
 };
