@@ -10,6 +10,7 @@ const Posts = props => {
         <IndividualPost
           key={post.data.id}
           title={post.data.title}
+          author={post.data.author}
           thumbnail={post.data.thumbnail}
         />
       );
