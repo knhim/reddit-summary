@@ -6,22 +6,32 @@ import IndividualPost from './IndividualPost';
 //fetch example (reddit.com/r/manga/hot.json)
 
 const App = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('');
+  const [url, setUrl] = useState(`https://www.reddit.com/r/frontpage/hot.json`);
 
-  // useEffect(async () => {
-  //   try {
-  //     const response = await axios.get('https://www.reddit.com/r/manga/hot.json');
-  //     setData(response);
-  //     console.log(response.data.data.children[1].data.title);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }, []);
+  const handleClick = e => {
+    e.preventDefault();
+    setUrl(`https://www.reddit.com/r/${query}/hot.json`);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        console.log(response.data);
+        setData(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [url]);
 
   return (
     <>
       <h1 className="flex justify-center">Home Page</h1>
-      <SearchBar />
+      <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
       <IndividualPost />
     </>
   );

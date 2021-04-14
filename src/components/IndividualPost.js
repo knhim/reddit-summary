@@ -1,7 +1,7 @@
 import React from 'react';
 
-const IndividualPost = () => {
-  return <h1>post</h1>;
+const IndividualPost = props => {
+  return <h1></h1>;
 };
 
 export default IndividualPost;

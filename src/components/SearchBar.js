@@ -1,36 +1,36 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const SearchBar = () => {
-  const [data, setData] = useState({ hits: [] });
-  const [query, setQuery] = useState('');
-  const [url, setUrl] = useState(`https://www.reddit.com/r/frontpage/hot.json`);
+const SearchBar = props => {
+  // const [data, setData] = useState({ hits: [] });
+  // const [query, setQuery] = useState('');
+  // const [url, setUrl] = useState(`https://www.reddit.com/r/frontpage/hot.json`);
 
-  const handleClick = e => {
-    e.preventDefault();
-    setUrl(`https://www.reddit.com/r/${query}/hot.json`);
-  };
+  // const handleClick = e => {
+  //   e.preventDefault();
+  //   setUrl(`https://www.reddit.com/r/${query}/hot.json`);
+  // };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url);
-        console.log(response.data);
-        setData(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, [url]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(url);
+  //       console.log(response.data);
+  //       setData(response.data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [url]);
 
   return (
     <>
-      <form className="flex justify-center" onSubmit={handleClick}>
+      <form className="flex justify-center" onSubmit={props.handleClick}>
         <label htmlFor="search">Search Subreddits</label>
         <input
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          value={props.query}
+          onChange={e => props.setQuery(e.target.value)}
           type="text"
           className="border-2 border-grey-500"
         />
