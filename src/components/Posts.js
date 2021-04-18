@@ -4,16 +4,16 @@ import IndividualPost from './IndividualPost';
 const Posts = props => {
   // grab comments from a thread
   // r.getSubmission('mqy9fz').expandReplies({ limit: 1, depth: 1 }).then(console.log);
-  const posts = props.data.children;
+  const posts = props.data;
 
   if (posts) {
     return posts.map(post => {
       return (
         <IndividualPost
-          key={post.data.id}
-          title={post.data.title}
-          author={post.data.author}
-          thumbnail={post.data.thumbnail}
+          key={post.id}
+          title={post.title}
+          author={post.author}
+          thumbnail={post.thumbnail}
         />
       );
     });

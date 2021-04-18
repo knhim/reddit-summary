@@ -17,35 +17,31 @@ const r = new snoowrap({
 const App = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
-  const [url, setUrl] = useState(`https://www.reddit.com/r/all/hot.json`);
-  //show hot threads from this subreddit
-  r.getHot('manga').then(console.log);
+  const [searchTerm, setSearchTerm] = useState('all');
 
   const handleClick = e => {
     e.preventDefault();
-    setUrl(`https://www.reddit.com/r/${query}/hot.json`);
+    setSearchTerm(query);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await r.getHot('manga');
+        let response = await r.getHot(`${query}`);
         response = JSON.parse(JSON.stringify(response));
-        console.log(response);
         setData(response);
       } catch (err) {
         console.error(err);
       }
     };
     fetchData();
-  }, []);
+  }, [searchTerm]);
 
   return (
     <>
       <h1 className="flex justify-center">Home Page</h1>
-      {/* <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
-      <Posts data={data} /> */}
-      {/* <IndividualPost data={data} /> */}
+      <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
+      <Posts data={data} />
     </>
   );
 };
