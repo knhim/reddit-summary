@@ -14,6 +14,9 @@ const Posts = props => {
           title={post.title}
           author={post.author}
           thumbnail={post.thumbnail}
+          createdUTC={post.created_utc}
+          numOfComments={post.num_comments}
+          score={post.score}
         />
       );
     });
