@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import SearchBar from './SearchBar';
 import Posts from './Posts';
 require('dotenv').config();
 const snoowrap = require('snoowrap');
 // import IndividualPost from './IndividualPost';
-console.log(process.env.REACT_APP_CLIENT_ID);
+
 // fetch example (reddit.com/r/manga/hot.json)
 const r = new snoowrap({
   userAgent: process.env.REACT_APP_USER_AGENT,
@@ -15,13 +15,11 @@ const r = new snoowrap({
 });
 
 const App = () => {
-  const [data, setData] = useState({ hits: [] });
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState(`https://www.reddit.com/r/all/hot.json`);
   //show hot threads from this subreddit
-  // r.getHot('manga');
-  // grab comments from a thread
-  r.getSubmission('mqy9fz').expandReplies({ limit: 1, depth: 1 }).then(console.log);
+  r.getHot('manga').then(console.log);
 
   const handleClick = e => {
     e.preventDefault();
@@ -31,20 +29,22 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
-        setData(response.data.data);
+        let response = await r.getHot('manga');
+        response = JSON.parse(JSON.stringify(response));
+        console.log(response);
+        setData(response);
       } catch (err) {
         console.error(err);
       }
     };
     fetchData();
-  }, [url]);
+  }, []);
 
   return (
     <>
       <h1 className="flex justify-center">Home Page</h1>
-      <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
-      <Posts data={data} />
+      {/* <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
+      <Posts data={data} /> */}
       {/* <IndividualPost data={data} /> */}
     </>
   );

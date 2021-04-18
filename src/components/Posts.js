@@ -2,6 +2,8 @@ import React from 'react';
 import IndividualPost from './IndividualPost';
 
 const Posts = props => {
+  // grab comments from a thread
+  // r.getSubmission('mqy9fz').expandReplies({ limit: 1, depth: 1 }).then(console.log);
   const posts = props.data.children;
 
   if (posts) {
