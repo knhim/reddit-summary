@@ -28,6 +28,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         let response = await r.getHot(`${query}`);
+        console.log(response);
         response = JSON.parse(JSON.stringify(response));
         setData(response);
       } catch (err) {

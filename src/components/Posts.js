@@ -8,13 +8,21 @@ const Posts = props => {
 
   if (posts) {
     return posts.map(post => {
+      const convertedUTC = new Date(post.created_utc * 1000);
+      const totalMinutesPostedAgo = convertedUTC.getHours() * 60 + convertedUTC.getMinutes();
+
+      const currentDate = new Date();
+      const currentMinutes = currentDate.getHours() * 60 + currentDate.getMinutes();
+      const timePosted = Math.round((currentMinutes - totalMinutesPostedAgo) / 60);
+
       return (
         <IndividualPost
           key={post.id}
           title={post.title}
           author={post.author}
+          image={post.url}
           thumbnail={post.thumbnail}
-          createdUTC={post.created_utc}
+          timePosted={timePosted}
           numOfComments={post.num_comments}
           score={post.score}
         />
