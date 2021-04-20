@@ -8,7 +8,7 @@ const IndividualPost = props => {
     props.thumbnail === 'default'
   ) {
     return (
-      <div className="w-9/12 border-2 border-radius-md">
+      <div className="w-10/12 border-2 border-radius-md">
         <h1 className="font-bold text-sm">{props.title}</h1>
         <p className="italic text-xs">{props.author}</p>
         <p>{props.createdUTC}</p>
@@ -19,14 +19,23 @@ const IndividualPost = props => {
   }
 
   return (
-    <div className="w-9/12 border-2 border-radius-md">
-      <img src={props.thumbnail} alt="n/a" />
+    <div className="w-10/12 border-2 border-radius-md">
+      <img src={props.image} alt={props.title} />
       <div className="flex-col">
         <h1 className="font-bold text-sm">{props.title}</h1>
-        <p className="italic text-xs">{props.author}</p>
-        <p>{props.createdUTC}</p>
-        <p>{props.numOfComments}</p>
-        <p>{props.score}</p>
+        <div className="flex">
+          <p className="italic text-xs">{props.author}</p>
+          <p>{props.timePosted}h</p>
+        </div>
+        <div className="flex">
+          <p>
+            {props.numOfComments} <i>comments</i>
+          </p>
+          <p>
+            <ion-icon name="arrow-up-circle-outline"></ion-icon>
+            {props.score}
+          </p>
+        </div>
       </div>
     </div>
   );
