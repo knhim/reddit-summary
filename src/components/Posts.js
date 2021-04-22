@@ -2,18 +2,16 @@ import React from 'react';
 import IndividualPost from './IndividualPost';
 
 const Posts = props => {
-  // grab comments from a thread
-  // r.getSubmission('mqy9fz').expandReplies({ limit: 1, depth: 1 }).then(console.log);
   const posts = props.data;
 
   if (posts) {
     return posts.map(post => {
       const convertedUTC = new Date(post.created_utc * 1000);
       const totalMinutesPostedAgo = convertedUTC.getHours() * 60 + convertedUTC.getMinutes();
-
       const currentDate = new Date();
       const currentMinutes = currentDate.getHours() * 60 + currentDate.getMinutes();
-      const timePosted = Math.round((currentMinutes - totalMinutesPostedAgo) / 60);
+
+      const timePosted = Math.abs(Math.round((currentMinutes - totalMinutesPostedAgo) / 60));
 
       return (
         <IndividualPost

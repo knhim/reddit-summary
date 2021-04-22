@@ -10,10 +10,17 @@ const IndividualPost = props => {
     return (
       <div className="w-10/12 border-2 border-radius-md">
         <h1 className="font-bold text-sm">{props.title}</h1>
-        <p className="italic text-xs">{props.author}</p>
-        <p>{props.createdUTC}</p>
-        <p>{props.numOfComments}</p>
-        <p>{props.score}</p>
+        <div className="flex">
+          <p className="italic text-xs">{props.author}</p>
+          <p>{props.timePosted}h</p>
+        </div>
+        <div className="flex">
+          <p>{props.numOfComments} comments</p>
+          <p>
+            <ion-icon name="arrow-up-circle-outline"></ion-icon>
+            {props.score}
+          </p>
+        </div>
       </div>
     );
   }

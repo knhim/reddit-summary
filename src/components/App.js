@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 // import axios from 'axios';
 import SearchBar from './SearchBar';
 import Posts from './Posts';
+import FullThread from './FullThread';
 require('dotenv').config();
 const snoowrap = require('snoowrap');
+
 // import IndividualPost from './IndividualPost';
 
 // fetch example (reddit.com/r/manga/hot.json)
@@ -28,7 +30,6 @@ const App = () => {
     const fetchData = async () => {
       try {
         let response = await r.getHot(`${query}`);
-        console.log(response);
         response = JSON.parse(JSON.stringify(response));
         setData(response);
       } catch (err) {
@@ -40,11 +41,12 @@ const App = () => {
 
   return (
     <>
-      <h1 className="flex justify-center">Home Page</h1>
+      {/* <h1 className="flex justify-center">Home Page</h1>
       <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
       <div className="grid place-items-center grid-cols-1 gap-4">
         <Posts data={data} />
-      </div>
+      </div> */}
+      <FullThread />
     </>
   );
 };
