@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import IndividualPost from './IndividualPost';
+import Comments from './Comments';
 const snoowrap = require('snoowrap');
 
 // grab comments from a thread
@@ -13,26 +13,48 @@ const r = new snoowrap({
 });
 
 const FullThread = props => {
-  const [comments, setComments] = useState('');
+  const [thread, setThread] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await r.getSubmission('mw34d1').expandReplies({ limit: 4, depth: 4 });
+        let response = await r.getSubmission('mw34d1').expandReplies({ limit: 1, depth: 3 });
         response = JSON.parse(JSON.stringify(response));
-        setComments(response);
+        setThread(response);
       } catch (err) {
         console.error(err);
       }
     };
     fetchData();
-  });
+  }, []);
 
   // r.getSubmission('mw34d1').expandReplies({ limit: 4, depth: 4 }).then(console.log);
 
   //issue here is grabbing the element that we clicked on (the first one)
 
-  return <h1>loading...</h1>;
+  return (
+    <>
+      <div className="w-10/12 border-2 border-radius-md">
+        <img src={thread.thumbnail} alt={thread.title} />
+        <div className="flex-col">
+          <h1 className="font-bold text-sm">{thread.title}</h1>
+          <div className="flex">
+            <p className="italic text-xs">{thread.author}</p>
+          </div>
+          <div className="flex">
+            <p>
+              {thread.num_comments} <i>comments</i>
+            </p>
+            <p>
+              <ion-icon name="arrow-up-circle-outline"></ion-icon>
+              {thread.score}
+            </p>
+          </div>
+        </div>
+      </div>
+      <Comments comments={thread.comments} />
+    </>
+  );
 };
 
 export default FullThread;
