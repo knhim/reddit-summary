@@ -52,7 +52,9 @@ const FullThread = props => {
           </div>
         </div>
       </div>
-      <Comments comments={thread.comments} />
+      <div className="m-3">
+        <Comments comments={thread.comments} />
+      </div>
     </>
   );
 };
