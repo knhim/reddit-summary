@@ -2,11 +2,13 @@ import React from 'react';
 
 const Comment = props => {
   return (
-    <>
-      <p>{props.score}</p>
+    <div className="border-t-2">
+      <div className="flex">
+        <p className="mr-2 text-red-400">{props.author}</p>
+        <p className="flex items-center text-xs">{props.score} points</p>
+      </div>
       <p>{props.body}</p>
-      <p>{props.author}</p>
-    </>
+    </div>
   );
 };
 

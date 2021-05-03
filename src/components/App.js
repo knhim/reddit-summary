@@ -41,11 +41,11 @@ const App = () => {
 
   return (
     <>
-      {/* <h1 className="flex justify-center">Home Page</h1>
+      <h1 className="flex justify-center">Home Page</h1>
       <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
       <div className="grid place-items-center grid-cols-1 gap-4">
         <Posts data={data} />
-      </div> */}
+      </div>
       <FullThread />
     </>
   );
