@@ -1,7 +1,8 @@
 import React from 'react';
 
 const IndividualPost = props => {
-  console.log(props);
+  let linkImage = props.image;
+
   const handleClick = e => {
     props.setFullThread(true);
     props.setCurrentId(props.threadId);
@@ -19,7 +20,7 @@ const IndividualPost = props => {
     props.thumbnail === 'default'
   ) {
     return (
-      <div className="w-10/12 border-2 border-radius-md">
+      <div className="w-10/12 border-2 border-radius-md" onClick={e => handleClick(e)}>
         <h1 className="font-bold text-sm">{props.title}</h1>
         <div className="flex">
           <p className="italic text-xs">{props.author}</p>
@@ -36,9 +37,13 @@ const IndividualPost = props => {
     );
   }
 
+  if (props.previewImage !== undefined) {
+    linkImage = props.previewImage.images[0].source.url;
+  }
+
   return (
     <div className="w-10/12 border-2 border-radius-md" onClick={e => handleClick(e)}>
-      <img src={props.image} alt={props.title} />
+      <img src={linkImage} alt={props.title} />
       <div className="flex-col">
         <h1 className="font-bold text-sm">{props.title}</h1>
         <div className="flex">
