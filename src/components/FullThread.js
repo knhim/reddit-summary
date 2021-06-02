@@ -14,11 +14,18 @@ const r = new snoowrap({
 
 const FullThread = props => {
   const [thread, setThread] = useState('');
+  const id = props.currentId;
+
+  const handleClick = e => {
+    props.setFullThread(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await r.getSubmission('mw34d1').expandReplies({ limit: 1, depth: 3 });
+        //maybe figure out number of comments later
+        let response = await r.getSubmission(id).expandReplies({ limit: 5, depth: 5 });
+        // let response = await r.getSubmission('nqdlmm').expandReplies({ limit: 1, depth: 3 });
         response = JSON.parse(JSON.stringify(response));
         setThread(response);
       } catch (err) {
@@ -26,7 +33,7 @@ const FullThread = props => {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   // r.getSubmission('mw34d1').expandReplies({ limit: 4, depth: 4 }).then(console.log);
 
@@ -34,6 +41,7 @@ const FullThread = props => {
 
   return (
     <>
+      <button onClick={e => handleClick(e)}>Back to Home</button>
       <div className="w-10/12 border-2 border-radius-md">
         <img src={thread.thumbnail} alt={thread.title} />
         <div className="flex-col">

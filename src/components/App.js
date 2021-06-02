@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import Posts from './Posts';
 import FullThread from './FullThread';
+
 require('dotenv').config();
 const snoowrap = require('snoowrap');
 
@@ -20,11 +21,19 @@ const App = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('all');
+  const [fullThread, setFullThread] = useState(false);
+  const [currentId, setCurrentId] = useState('');
 
-  const handleClick = e => {
+  const handleSearch = e => {
     e.preventDefault();
     setSearchTerm(query);
   };
+
+  // const handleClick = e => {
+  //   e.preventDefault();
+  //   console.log(e);
+  //   // setFullThread(true);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,18 +46,26 @@ const App = () => {
       }
     };
     fetchData();
-  }, [searchTerm]);
+  }, [searchTerm, query]);
 
-  return (
-    <>
-      <h1 className="flex justify-center">Home Page</h1>
-      <SearchBar query={query} setQuery={setQuery} handleClick={handleClick} />
-      <div className="grid place-items-center grid-cols-1 gap-4">
-        <Posts data={data} />
-      </div>
-      <FullThread />
-    </>
-  );
+  if (fullThread === true) {
+    return <FullThread currentId={currentId} setFullThread={setFullThread} />;
+  } else {
+    return (
+      <>
+        <h1 className="flex justify-center">Home Page</h1>
+        <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
+        <div className="grid place-items-center grid-cols-1 gap-4">
+          <Posts
+            data={data}
+            fullThread={fullThread}
+            setFullThread={setFullThread} /*handleClick={handleClick}*/
+            setCurrentId={setCurrentId}
+          />
+        </div>
+      </>
+    );
+  }
 };
 
 export default App;
