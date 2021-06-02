@@ -1,6 +1,17 @@
 import React from 'react';
 
 const IndividualPost = props => {
+  console.log(props);
+  const handleClick = e => {
+    props.setFullThread(true);
+    props.setCurrentId(props.threadId);
+  };
+
+  //check to see if we need a preview image or not to display
+  // if (imageLink === undefined) {
+  //   imageLink = props.image;
+  // }
+
   if (
     props.thumbnail === 'self' ||
     props.thumbnail === 'spoiler' ||
@@ -26,7 +37,7 @@ const IndividualPost = props => {
   }
 
   return (
-    <div className="w-10/12 border-2 border-radius-md">
+    <div className="w-10/12 border-2 border-radius-md" onClick={e => handleClick(e)}>
       <img src={props.image} alt={props.title} />
       <div className="flex-col">
         <h1 className="font-bold text-sm">{props.title}</h1>
