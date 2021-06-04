@@ -43,8 +43,11 @@ const IndividualPost = props => {
 
   return (
     <div className="w-10/12 border-2 border-radius-md" onClick={e => handleClick(e)}>
-      <img src={linkImage} alt={props.title} />
-      <div className="flex-col">
+      <div className="flex justify-center">
+        <img src={linkImage} alt={props.title} className="object-scale-down" />
+      </div>
+
+      <div className="ml-2 flex-col">
         <h1 className="font-bold text-sm">{props.title}</h1>
         <div className="flex">
           <p className="italic text-xs">{props.author}</p>
