@@ -29,12 +29,6 @@ const App = () => {
     setSearchTerm(query);
   };
 
-  // const handleClick = e => {
-  //   e.preventDefault();
-  //   console.log(e);
-  //   // setFullThread(true);
-  // };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
