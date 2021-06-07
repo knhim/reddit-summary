@@ -46,7 +46,7 @@ const App = () => {
     return <FullThread currentId={currentId} setFullThread={setFullThread} />;
   } else {
     return (
-      <>
+      <div className="my-4">
         <h1 className="flex justify-center">Home Page</h1>
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
         <div className="grid place-items-center grid-cols-1 gap-4">
@@ -57,7 +57,7 @@ const App = () => {
             setCurrentId={setCurrentId}
           />
         </div>
-      </>
+      </div>
     );
   }
 };
