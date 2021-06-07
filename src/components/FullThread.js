@@ -15,7 +15,6 @@ const r = new snoowrap({
 const FullThread = props => {
   const [thread, setThread] = useState('');
   const id = props.currentId;
-  console.log(thread);
 
   const handleClick = e => {
     props.setFullThread(false);
@@ -44,15 +43,15 @@ const FullThread = props => {
     <>
       <div className="sticky top-0">
         <button
-          className="ml-2 my-1 p-1 text-white  bg-red-400 rounded border-2 border-red-500"
+          className="ml-2 my-1 p-1 text-white bg-red-400 rounded border-2 border-red-500"
           onClick={e => handleClick(e)}
         >
           Go Back
         </button>
       </div>
 
-      <div>
-        <div className="flex justify-between m-2 p-1 border-2 border-radius-md">
+      <div className="">
+        <div className="w-6/12 m-auto flex justify-between p-1 border-2 border-radius-md">
           <div className="ml-1 flex flex-col justify-between">
             <h1 className="font-bold text-sm">{thread.title}</h1>
             <div>
