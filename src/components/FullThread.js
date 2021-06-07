@@ -15,6 +15,7 @@ const r = new snoowrap({
 const FullThread = props => {
   const [thread, setThread] = useState('');
   const id = props.currentId;
+  console.log(thread);
 
   const handleClick = e => {
     props.setFullThread(false);
@@ -41,27 +42,44 @@ const FullThread = props => {
 
   return (
     <>
-      <button onClick={e => handleClick(e)}>Back to Home</button>
-      <div className="w-10/12 border-2 border-radius-md">
-        <img src={thread.thumbnail} alt={thread.title} />
-        <div className="flex-col">
-          <h1 className="font-bold text-sm">{thread.title}</h1>
-          <div className="flex">
-            <p className="italic text-xs">{thread.author}</p>
+      <div className="sticky top-0">
+        <button
+          className="ml-2 my-1 p-1 text-white  bg-red-400 rounded border-2 border-red-500"
+          onClick={e => handleClick(e)}
+        >
+          Go Back
+        </button>
+      </div>
+
+      <div>
+        <div className="flex justify-between m-2 p-1 border-2 border-radius-md">
+          <div className="ml-1 flex flex-col justify-between">
+            <h1 className="font-bold text-sm">{thread.title}</h1>
+            <div>
+              <div>
+                <p className="italic text-xs">{thread.author}</p>
+              </div>
+              <div className="flex">
+                <p>
+                  {thread.num_comments} <i>comments</i>
+                </p>
+                <p>
+                  <ion-icon name="arrow-up-circle-outline"></ion-icon>
+                  {thread.score}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex">
-            <p>
-              {thread.num_comments} <i>comments</i>
-            </p>
-            <p>
-              <ion-icon name="arrow-up-circle-outline"></ion-icon>
-              {thread.score}
-            </p>
+
+          <div>
+            <a href={thread.url}>
+              <img src={thread.thumbnail} alt={thread.title} />
+            </a>
           </div>
         </div>
-      </div>
-      <div className="m-3">
-        <Comments comments={thread.comments} />
+        <div className="m-3">
+          <Comments comments={thread.comments} />
+        </div>
       </div>
     </>
   );
