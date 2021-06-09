@@ -24,17 +24,19 @@ const IndividualPost = props => {
         className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 border-2 border-radius-md "
         onClick={e => handleClick(e)}
       >
-        <h1 className="font-bold text-sm">{props.title}</h1>
-        <div className="flex">
-          <p className="italic text-xs">{props.author}</p>
-          <p>{props.timePosted}h</p>
-        </div>
-        <div className="flex">
-          <p>{props.numOfComments} comments</p>
-          <p>
-            <ion-icon name="arrow-up-circle-outline"></ion-icon>
-            {props.score}
-          </p>
+        <div className="p-2">
+          <h1 className="font-bold text-sm">{props.title}</h1>
+          <div className="flex">
+            <p className="italic text-xs">{props.author}</p>
+            <p>{props.timePosted}h</p>
+          </div>
+          <div className="flex">
+            <p>{props.numOfComments} comments</p>
+            <p>
+              <ion-icon name="arrow-up-circle-outline"></ion-icon>
+              {props.score}
+            </p>
+          </div>
         </div>
       </div>
     );

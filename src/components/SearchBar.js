@@ -25,13 +25,15 @@ const SearchBar = props => {
 
   return (
     <>
-      <form className="flex justify-center" onSubmit={props.handleSearch}>
-        <label htmlFor="search">Search Subreddits</label>
+      <form className="flex justify-center mt-1 mb-1" onSubmit={props.handleSearch}>
+        <label className="mr-2" htmlFor="search">
+          Search Subreddits
+        </label>
         <input
           value={props.query}
           onChange={e => props.setQuery(e.target.value)}
           type="text"
-          className="border-2 border-grey-500"
+          className="border-2 border-grey-500 mr-1"
         />
         <button type="submit">Search</button>
       </form>
