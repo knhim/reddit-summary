@@ -1,9 +1,9 @@
 import React from 'react';
 
-const IndividualPost = props => {
+const IndividualPost = (props) => {
   let linkImage = props.image;
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     props.setFullThread(true);
     props.setCurrentId(props.threadId);
   };
@@ -21,14 +21,15 @@ const IndividualPost = props => {
   ) {
     return (
       <div
-        className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 border-2 border-radius-md "
-        onClick={e => handleClick(e)}
+        className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 border-2 border-radius-md cursor-pointer"
+        onClick={(e) => handleClick(e)}
       >
         <div className="p-2">
           <h1 className="font-bold text-sm">{props.title}</h1>
           <div className="flex">
             <p className="italic text-xs">{props.author}</p>
             <p>{props.timePosted}h</p>
+            <p className="ml-1 text-blue-500">r/{props.threadId.subreddit}</p>
           </div>
           <div className="flex">
             <p>{props.numOfComments} comments</p>
@@ -48,8 +49,8 @@ const IndividualPost = props => {
 
   return (
     <div
-      className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 border-2 border-radius-md "
-      onClick={e => handleClick(e)}
+      className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 border-2 border-radius-md cursor-pointer"
+      onClick={(e) => handleClick(e)}
     >
       <div className="flex justify-center mb-2">
         <img src={linkImage} alt={props.title} className="object-contain max-h-96" />
