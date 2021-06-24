@@ -8,11 +8,6 @@ const IndividualPost = (props) => {
     props.setCurrentId(props.threadId);
   };
 
-  //check to see if we need a preview image or not to display
-  // if (imageLink === undefined) {
-  //   imageLink = props.image;
-  // }
-
   if (
     props.thumbnail === 'self' ||
     props.thumbnail === 'spoiler' ||

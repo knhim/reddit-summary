@@ -24,7 +24,7 @@ const App = () => {
   const [fullThread, setFullThread] = useState(false);
   const [currentId, setCurrentId] = useState('');
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     e.preventDefault();
     setSearchTerm(query);
   };
@@ -40,13 +40,26 @@ const App = () => {
       }
     };
     fetchData();
-  }, [searchTerm, query]);
+  }, [searchTerm]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       let response = await r.getHot(`${query}`);
+  //       response = JSON.parse(JSON.stringify(response));
+  //       setData(response);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [searchTerm, query]);
 
   if (fullThread === true) {
     return <FullThread currentId={currentId} setFullThread={setFullThread} />;
   } else {
     return (
-      <div className="my-4">
+      <div className="my-2">
         <h1 className="flex justify-center">Home Page</h1>
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
         <div className="grid place-items-center grid-cols-1 gap-4">
